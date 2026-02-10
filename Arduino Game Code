@@ -1,0 +1,33 @@
+
+void setup() {
+  //defining pin2 as the switch
+  pinMode(2, INPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, INPUT);
+  Serial.begin(9600);
+  Serial.println("\nWelcome to Counting Seconds, the game where you have to use your intuition to assume how much time has been spent. The goal of the game is to click the button as close as possible to the selected time after the LED lights up.");
+  delay(3000);
+  Serial.println("You have 10 seconds to decide. Flip the switch ON to play on 5 second mode, flip it OFF to play on 3 second mode");
+  delay(10000);
+  
+  int output1 = digitalRead(2);
+  int output2 = digitalRead(1);
+  if (output1 == HIGH) {
+    Serial.println("You Have selected 5 second mode");
+    delay(1000);
+    Serial.println("The game will begin when the LED lights up");
+    delay(5000);
+    digitalWrite(3, HIGH);
+  }
+  else if (output1 == LOW) {
+    Serial.println("You have selected 3 second mode");
+    delay(1000);
+    Serial.println("The game will begin when the LED lights up");
+    delay(5000);
+    digitalWrite(3, HIGH);
+  }
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+}
