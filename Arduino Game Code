@@ -3,20 +3,20 @@
 Timer stopwatch;
 
 void setup() {
-  //defining pins 2 and 5 as the switches
+//defining pins 2 and 5 as the switches
   pinMode(2, INPUT);
   pinMode(3, OUTPUT);
   pinMode(5, INPUT);
   Serial.begin(9600);
-  //Explains the game and how to proceed
-  Serial.println("\nWelcome to Counting Seconds, the game where you have to use your intuition to assume how much time has been spent. The goal of the game is to click the button as close as possible to the selected time after the LED lights up.");
+//Explains the game and how to proceed
+  Serial.println("\nWelcome to Counting Seconds, the game where you have to use your intuition to assume how much time has been spent.\nThe goal of the game is to click the button as close as possible to the selected time after the LED lights up.");
   delay(3000);
   Serial.println("You have 10 seconds to decide. Flip the switch ON to play on 5 second mode, flip it OFF to play on 3 second mode");
   delay(10000);
-  //Creates a variable for each switch
+//Creates a variable for each switch
   int output1 = digitalRead(2);
   int output2 = digitalRead(5);
-  //If the switch is on, it will go to 5 second mode
+//If the switch is on, it will go to 5 second mode
   if (output1 == HIGH) {
     Serial.println("You have selected 5 second mode");
     delay(1000);
@@ -26,7 +26,7 @@ void setup() {
     stopwatch.start();
     
   }
-  //If the switch is off, it will go to 3 second mode
+//If the switch is off, it will go to 3 second mode
   if (output1 == LOW) {
     Serial.println("You have selected 3 second mode");
     delay(1000);
@@ -38,15 +38,76 @@ void setup() {
 }
 
 void loop() {
-  //The Arduino will read the second switch and end the timer when it is turned on
+//The Arduino will read the second switch and end the timer when it is turned on
+  int output1 = digitalRead(2);
   int output2 = digitalRead(5);
+  unsigned long endTime = 0;
   if (output2 == LOW) {
       digitalRead(5);
     }
   if (output2 == HIGH) {
-        stopwatch.stop();
-        Serial.print("time elapsed ms: ");
-        Serial.println(stopwatch.read());
-        while(true);
+      stopwatch.stop();
+      Serial.print("time elapsed ms: ");
+      Serial.println(stopwatch.read());
+      endTime = stopwatch.read();
+//Turns off the LED when the switch is on
+      digitalWrite(3,LOW);
+//Gives a different response to the user depending on how close they are to the target time
+      if (output1 == HIGH && endTime < 3000) {
+        Serial.print("Absolutely Terrible Performance");
+      }
+      if (output1 == HIGH && endTime > 3000 && endTime < 4000){
+        Serial.print("You can do better");
+      }
+      if (output1 == HIGH && endTime > 4000 && endTime < 4500){
+        Serial.print("Not Bad");
+      }
+      if (output1 == HIGH && endTime > 4500 && endTime < 4900){
+        Serial.print("Pretty Good");
+      }
+      if (output1 == HIGH && endTime > 4900 && endTime < 5100){
+        Serial.print("Spot On!");
+      }
+      if (output1 == HIGH && endTime > 5100 && endTime < 5500){
+        Serial.print("Pretty Good");
+      }
+      if (output1 == HIGH && endTime > 5500 && endTime < 6000){
+        Serial.print("Not Bad");
+      }
+      if (output1 == HIGH && endTime > 6000 && endTime < 7000){
+        Serial.print("You can do better");
+      }
+      if (output1 == HIGH && endTime > 7000){
+        Serial.print("Were you even trying?");
+      }
+      if (output1 == LOW && endTime < 1000){
+        Serial.print("Absolutely Terrible Performance");
+      }
+      if (output1 == LOW && endTime > 1000 && endTime < 2000){
+        Serial.print("You can do better");
+      }
+      if (output1 == LOW && endTime > 2000 && endTime < 2500){
+        Serial.print("Not Bad");
+      }
+      if (output1 == LOW && endTime > 2500 && endTime < 2900){
+        Serial.print("Pretty Good");
+      }
+      if (output1 == LOW && endTime > 2900 && endTime < 3100){
+        Serial.print("Spot On!");
+      }
+      if (output1 == LOW && endTime > 3100 && endTime < 3500){
+        Serial.print("Pretty Good");
+      }
+      if (output1 == LOW && endTime > 3500 && endTime < 4000){
+        Serial.print("Not Bad");
+      }
+      if (output1 == LOW && endTime > 4000 && endTime < 5000){
+        Serial.print("You can do better");
+      }
+      if (output1 == LOW && endTime > 5000){
+        Serial.print("You should switch to 5 second mode");
+      }
+//Breaks the program
+      while(true);
       }
 }
