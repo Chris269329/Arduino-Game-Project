@@ -1,2 +1,2 @@
 # Arduino-Game-Project
-The code is a game that relies on your time to 
+The code is a game that relies on your reaction time to perfectly guess how long 5 or 3 seconds is. If 3 seconds is chosen you must be precise on flipping the switch 3 seconds after the LED turns on. If 5 seconds is chosen you must be precise on flipping the switch 5 seconds after the LED turns on. The code will give you a different response depending on how close you are to your target time.
