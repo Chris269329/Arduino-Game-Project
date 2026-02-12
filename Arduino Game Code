@@ -1,9 +1,9 @@
-#include "Timer.h"
+#include "Timer.h" //Includes the Timer library
 
-Timer stopwatch;
+Timer stopwatch; //Creates the timer and calls it "stopwatch"
 
 void setup() {
-//defining pins 2 and 5 as the switches
+//defining pins 2 and 5 as the switches and pin 3 as an output LED
   pinMode(2, INPUT);
   pinMode(3, OUTPUT);
   pinMode(5, INPUT);
@@ -38,13 +38,14 @@ void setup() {
 }
 
 void loop() {
-//The Arduino will read the second switch and end the timer when it is turned on
+//The Arduino will read the both switches 
   int output1 = digitalRead(2);
   int output2 = digitalRead(5);
-  unsigned long endTime = 0;
+  unsigned long endTime = 0; //Creates a variable for the end time of the stopwatch
   if (output2 == LOW) {
       digitalRead(5);
     }
+//Reads when the second switch is high and stops the timer
   if (output2 == HIGH) {
       stopwatch.stop();
       Serial.print("time elapsed ms: ");
